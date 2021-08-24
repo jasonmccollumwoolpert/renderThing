@@ -25,3 +25,6 @@ Find a smart developer who knows these tools
 1. Spin up a new flask web service pointing at repo you created above
 1. Wait for web service to start
 1. Bask in your initial success
+
+### CI / CD
+1. Edit `.github\workflows\main.yml` and replace the url with the Deploy Hook provided in your web service settings to enable auto deployment on commit to main
