@@ -7,7 +7,10 @@ conn = psycopg2.connect("postgres://renderuser:95YvqCrPPcKt5Rro7oyPJOwvKt8wQlOl@
 
 @app.get('/')
 def app_get():
-    seconds = float(request.args.get('seconds'))
+    try:
+        seconds = float(request.args.get('seconds'))
+    except:
+        return 'Numerical argument of seconds is required', 400
     cur = conn.cursor()
     cur.execute('''
     select
