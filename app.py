@@ -12,19 +12,42 @@ def app_get():
         seconds = float(request.args.get('seconds'))
     except:
         return 'Numerical argument of seconds is required', 400
+    
+    value_raw = request.args.get('value')
+    value = None
+    if value_raw is not None:
+        value = str(value_raw)
+
     cur = conn.cursor()
-    cur.execute('''
-    select
-        thing,
-        count(thing)
-    from
-        things
-    where
-        entrytimestamp >= current_timestamp - interval '%s seconds'
-    group by thing;
-    ''',
-        (seconds,)
-    )
+
+    if value:
+        cur.execute('''
+        select
+            thing,
+            count(thing)
+        from
+            things
+        where
+            entrytimestamp >= current_timestamp - interval '%s seconds'
+            and thing = %s
+        group by thing;
+        ''',
+            (seconds, value)
+        )
+    else:
+        cur.execute('''
+        select
+            thing,
+            count(thing)
+        from
+            things
+        where
+            entrytimestamp >= current_timestamp - interval '%s seconds'
+        group by thing;
+        ''',
+            (seconds,)
+        )
+
     result = cur.fetchall()
     response = {}
     for word in result:

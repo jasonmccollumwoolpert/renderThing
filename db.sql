@@ -12,17 +12,14 @@ values
 	('bob', current_timestamp),
 	('dog', current_timestamp)
 
--- Verify the table looks correct
-select * from things;
-
--- Test pulling records from last 1000 seconds and aggregating by word
+-- Test pulling records from last 100 seconds and aggregating by word
 select
 	thing,
 	count(thing)
 from
 	things
 where
-	entrytimestamp >= current_timestamp - interval '1000 seconds'
+	entrytimestamp >= current_timestamp - interval '100 seconds'
 group by thing;
 
 -- Clear the table
