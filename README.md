@@ -20,7 +20,7 @@ Find a smart developer who knows these tools
 
 1. Create a public repo on GitHub or GitLab and duplicate this repo there
 1. Create a render.com account
-1. Create a web service using Flask for the frontend
+1. Create a web service using Flask for the frontend following [these instructions](https://render.com/docs/deploy-flask)
 1. Create an environment variable in your web service of the name `db_conn` equal to the internal connection string provided by the dashboard of the database you created
 1. Spin up a new flask web service pointing at repo you created above
 1. Wait for web service to start
