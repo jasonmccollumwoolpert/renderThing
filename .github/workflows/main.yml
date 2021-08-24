@@ -4,7 +4,6 @@ on: push
 
 jobs:
   deployment:
-    environment: prod
     runs-on: ubuntu-latest
     steps:
     - name: Deploy Stage
