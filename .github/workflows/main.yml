@@ -9,5 +9,5 @@ jobs:
     - name: Deploy Stage
       uses: fjogeleit/http-request-action@master
       with:
-        url: env.deploy_url
+        url: ${{ secrets.DEPLOY_URL }}
         method: 'GET'
