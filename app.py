@@ -1,3 +1,4 @@
+from datetime import datetime as dt
 from flask import Flask, request
 import psycopg2
 
@@ -19,15 +20,38 @@ def app_get():
     from
         things
     where
-        entrytimestamp >= current_timestamp - interval '%d seconds'
+        entrytimestamp >= current_timestamp - interval '%s seconds'
     group by thing;
-    ''' % seconds)
+    ''',
+        (seconds,)
+    )
     result = cur.fetchall()
     response = {}
     for word in result:
         response[word[0]] = word[1]
+    cur.close()
     return response
 
 @app.post('/')
 def app_post():
-    return 'request received'
+    body = request.json
+    if not body:
+        return 'Missing request body', 400
+    if not isinstance(body, dict) or not 'value' in body:
+        return 'Request should be of the format { "value": "myValue" }', 400
+    
+    value = str(body['value'])
+    now = dt.utcnow()
+
+    cur = conn.cursor()
+    cur.execute('''
+        insert into things (thing, entrytimestamp)
+        values
+            (%s, %s)
+        ''',
+        (value, now)
+    )
+    conn.commit()
+    cur.close()
+
+    return { "timestamp": now, "value": value }
