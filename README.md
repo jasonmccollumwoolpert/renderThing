@@ -27,4 +27,4 @@ Find a smart developer who knows these tools
 1. Bask in your initial success
 
 ### CI / CD
-1. Edit `.github\workflows\main.yml` and replace the url with the Deploy Hook provided in your web service settings to enable auto deployment on commit to main
+1. Edit `.github\workflows\main.yml` and replace the url with the Deploy Hook provided in your web service settings to enable auto deployment on commit to the repo
