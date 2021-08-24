@@ -22,9 +22,8 @@ Find a smart developer who knows these tools
 1. Create a render.com account
 1. Create a web service using Flask for the frontend following [these instructions](https://render.com/docs/deploy-flask)
 1. Create an environment variable in your web service of the name `db_conn` equal to the internal connection string provided by the dashboard of the database you created
-1. Spin up a new flask web service pointing at repo you created above
 1. Wait for web service to start
 1. Bask in your initial success
 
 ### CI / CD
-1. Edit `.github\workflows\main.yml` and replace the url with the Deploy Hook provided in your web service settings to enable auto deployment on commit to the repo
+1. Create an environment variable in your repo named `deploy_url` and set the value to the Deploy Hook provided in your web service settings to enable auto deployment on commit to the repo

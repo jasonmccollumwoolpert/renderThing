@@ -9,5 +9,5 @@ jobs:
     - name: Deploy Stage
       uses: fjogeleit/http-request-action@master
       with:
-        url: 'https://api.render.com/deploy/srv-c4il0f76d9kh5recu2hg?key=N3dZsH0e58Q'
+        url: env.deploy_url
         method: 'GET'
