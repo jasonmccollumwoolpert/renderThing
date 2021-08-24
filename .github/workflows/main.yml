@@ -4,10 +4,11 @@ on: push
 
 jobs:
   deployment:
+    environment: prod
     runs-on: ubuntu-latest
     steps:
     - name: Deploy Stage
       uses: fjogeleit/http-request-action@master
       with:
-        url: ${{ secrets.DEPLOY_URL }}
+        url: ${{ env.DEPLOY_URL }}
         method: 'GET'

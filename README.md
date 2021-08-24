@@ -26,4 +26,5 @@ Find a smart developer who knows these tools
 1. Bask in your initial success
 
 ### CI / CD
-1. Create a secret in your repo named `DEPLOY_URL` and set the value to the Deploy Hook provided in your web service settings to enable auto deployment on commit to the repo
+1. Create the `prod` environment in your repo
+1. Create an environment variable named `DEPLOY_URL` and set the value to the Deploy Hook provided in your web service settings to enable auto deployment on commit to the repo
