@@ -1,10 +1,10 @@
 from datetime import datetime as dt
 from flask import Flask, request
+import os
 import psycopg2
 
 app = Flask(__name__)
-
-conn = psycopg2.connect("postgres://renderuser:95YvqCrPPcKt5Rro7oyPJOwvKt8wQlOl@oregon-postgres.render.com/renderdatabase")
+conn = psycopg2.connect(os.environ.get('db_conn'))
 
 @app.get('/')
 def app_get():
