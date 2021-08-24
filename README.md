@@ -29,3 +29,5 @@ Find a smart developer who knows these tools
 1. Relish the moment
 
 ## Database
+1. create a database on render.com and setup with your desired parameters
+1. connect to the database using the provided connection details and use the code within `db.sql` to create and test the table

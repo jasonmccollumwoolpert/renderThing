@@ -7,10 +7,22 @@ conn = psycopg2.connect("postgres://renderuser:95YvqCrPPcKt5Rro7oyPJOwvKt8wQlOl@
 
 @app.get('/')
 def app_get():
-    seconds = request.args.get('seconds')
-    response = {
-        'seconds': seconds
-    }
+    seconds = float(request.args.get('seconds'))
+    cur = conn.cursor()
+    cur.execute('''
+    select
+        thing,
+        count(thing)
+    from
+        things
+    where
+        entrytimestamp >= current_timestamp - interval '%d seconds'
+    group by thing;
+    ''' % seconds)
+    result = cur.fetchall()
+    response = {}
+    for word in result:
+        response[word[0]] = word[1]
     return response
 
 @app.post('/')
